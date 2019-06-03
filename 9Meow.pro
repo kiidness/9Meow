@@ -14,7 +14,9 @@ TARGET = 9Meow
 
 CONFIG += sailfishapp
 
-SOURCES += src/9Meow.cpp
+SOURCES += src/9Meow.cpp \
+    src/category.cpp \
+    src/categorylist.cpp
 
 DISTFILES += qml/9Meow.qml \
     qml/cover/CoverPage.qml \
@@ -38,3 +40,7 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/9Meow-de.ts
+
+HEADERS += \
+    src/category.h \
+    src/categorylist.h

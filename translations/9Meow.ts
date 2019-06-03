@@ -18,9 +18,5 @@
         <source>Show Page 2</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Nested Page</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 </TS>
