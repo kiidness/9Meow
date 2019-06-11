@@ -1,6 +1,7 @@
 #include "categorylist.h"
+#include "category.h"
 
-CategoryList::CategoryList(QObject *parent) : QObject(parent), m_categories(QList())
+CategoryList::CategoryList(QObject *parent) : QObject(parent), m_categories(QList<Category*>())
 {
 
 }
@@ -8,7 +9,7 @@ CategoryList::CategoryList(QObject *parent) : QObject(parent), m_categories(QLis
 
 void CategoryList::connectCateg(int index)
 {
-    connect(m_categories[index], &Category::categoryChanged, this, [=](){emit itemChanged(index);});
+    connect(m_categories[index], &Category::categoryChanged, this, [=](){emit categoryChanged(index);});
 }
 void CategoryList::disconnectCateg(int index)
 {
@@ -24,11 +25,11 @@ void CategoryList::append(Category *category){
     emit postAppendCategory();
 }
 
-int CategoryList::count(){
+int CategoryList::count() const{
     return m_categories.count();
 }
 
-Category CategoryList::at(int place) const{
+Category *CategoryList::at(int place) const{
     return m_categories.at(place);
 }
 
@@ -41,6 +42,28 @@ void CategoryList::remove(int index){
     for(; index < count(); index++){
         disconnectCateg(index);
         connectCateg(index);
+    }
+    emit postRemoveCategory();
+}
+
+void CategoryList::createCategory(QString name)
+{
+    append(new Category((name) ));
+}
+
+void CategoryList::removeCategory(int position)
+{
+    emit preRemoveCategory(position);
+
+    // No longer care for the file change
+    disconnect ( m_categories[position], &Category::categoryChanged, this, 0);
+
+    m_categories.removeAt(position);
+
+    // Reconnect to good positions
+    for ( ; position < count() ; ++position ) {
+        disconnect ( m_categories[position], &Category::categoryChanged, this, 0);
+        connect( m_categories[position], &Category::categoryChanged, this, [=](){ emit CategoryList::categoryChanged( position ); } );
     }
     emit postRemoveCategory();
 }

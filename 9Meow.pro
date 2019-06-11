@@ -16,7 +16,8 @@ CONFIG += sailfishapp
 
 SOURCES += src/9Meow.cpp \
     src/category.cpp \
-    src/categorylist.cpp
+    src/categorylist.cpp \
+    src/categorymodel.cpp
 
 DISTFILES += qml/9Meow.qml \
     qml/cover/CoverPage.qml \
@@ -43,4 +44,5 @@ TRANSLATIONS += translations/9Meow-de.ts
 
 HEADERS += \
     src/category.h \
-    src/categorylist.h
+    src/categorylist.h \
+    src/categorymodel.h

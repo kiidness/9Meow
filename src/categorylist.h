@@ -2,6 +2,7 @@
 #define CATEGORYLIST_H
 
 #include <QObject>
+#include <QList>
 
 class Category;
 
@@ -20,6 +21,8 @@ public:
     void connectCateg(int index);
 
     void disconnectCateg(int index);
+    void createCategory(QString name);
+    void removeCategory(int position);
 
 signals:
     void preAppendCategory();
@@ -27,7 +30,7 @@ signals:
     void preRemoveCategory(int index);
     void postRemoveCategory();
 
-    void itemChanged(int index);
+    void categoryChanged(int index);
 public slots:
 };
 
