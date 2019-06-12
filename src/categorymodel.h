@@ -25,7 +25,6 @@ public:
     QHash<int, QByteArray> roleNames() const;
     enum {
         CategoryName = Qt::UserRole,
-        Size,
         Category
     };
 

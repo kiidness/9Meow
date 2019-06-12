@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import CategoryModel 1.0
 
 Page {
     id: page
@@ -9,7 +10,6 @@ Page {
 
     SilicaListView {
         id: listView
-        model: 20
         anchors.fill: parent
 
         PullDownMenu {
@@ -42,6 +42,7 @@ Page {
             }
             onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
         }
+        model: CategoryModel { list: categoryList }
         VerticalScrollDecorator {}
     }
 
