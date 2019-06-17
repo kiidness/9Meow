@@ -1,7 +1,12 @@
 #include "apiclient.h"
 #include "categorylist.h"
+#include "category.h"
 
 #include <QNetworkAccessManager>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 ApiClient::ApiClient(QObject *parent): QObject(parent),
     networkManager(this)
@@ -15,14 +20,26 @@ CategoryList *ApiClient::getAllCategory() {
     QNetworkRequest request;
     request.setUrl(url);
 
-    QNetworkReply *currentReply = networkManager.get(request);
+    networkManager.get(request);
 }
 
 void ApiClient::onResult(QNetworkReply* reply){
     if(reply->error() != QNetworkReply::NoError)
         return;
-    auto data = reply->readAll();
-    int a = 1;
-    /*QScriptEngine engine;
-    QScriptValue result = engine.evaluate(data);*/
+    CategoryList categoryList;
+    QByteArray result = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(result);
+
+    QJsonArray array = jsonResponse.array();
+
+    qDebug() << "zero: " << array[0];
+    for(const QJsonValue& value : array) {
+        QJsonObject obj = value.toObject();
+        qDebug()<< "name: " << obj["name"];
+        QString name = obj["name"].toString();
+        Category category(name);
+        categoryList.append(&category);
+    }
+
+    reply->deleteLater();
 }

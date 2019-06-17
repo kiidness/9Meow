@@ -31,6 +31,8 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<CategoryList>("CategoryModel", 1, 0, "CategoryList", QStringLiteral("Don't define CategoryList in QML!") );
     qmlRegisterUncreatableType<Category>("CategoryModel", 1, 0, "Category", QStringLiteral("Don't define Category in QML!") );
 
+    // https://doc.qt.io/qt-5/qsortfilterproxymodel.html#details
+    // POUR LE TRI ^
 
     //
     ApiClient apiClient;
