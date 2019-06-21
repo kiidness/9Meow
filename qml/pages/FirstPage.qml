@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import CategoryModel 1.0
+import "../delegates"
 
 Page {
     id: page
@@ -15,7 +16,6 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: qsTr("Show Page 2")
-                onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
             }
         }
 
@@ -31,18 +31,10 @@ Page {
                 text: "aaaaaa"
             }
         }
-        delegate: BackgroundItem {
-            id: delegate
-
-            Label {
-                x: Theme.horizontalPageMargin
-                text: qsTr("Item") + " " + index
-                anchors.verticalCenter: parent.verticalCenter
-                color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-            }
-            onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
-        }
         model: CategoryModel { list: categoryList }
+
+        delegate: DelegateCategory { }
+
         VerticalScrollDecorator {}
     }
 

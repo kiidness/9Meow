@@ -15,31 +15,29 @@ ApiClient::ApiClient(QObject *parent): QObject(parent),
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onResult(QNetworkReply*)));
 }
 
-CategoryList *ApiClient::getAllCategory() {
+void ApiClient::getAllCategory(CategoryList *list) {
     QUrl url("https://api.thecatapi.com/v1/breeds");
     QNetworkRequest request;
     request.setUrl(url);
 
+    categoryList = list;
     networkManager.get(request);
 }
 
 void ApiClient::onResult(QNetworkReply* reply){
+    categoryList->clear();
     if(reply->error() != QNetworkReply::NoError)
         return;
-    CategoryList categoryList;
     QByteArray result = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(result);
 
     QJsonArray array = jsonResponse.array();
 
-    qDebug() << "zero: " << array[0];
     for(const QJsonValue& value : array) {
         QJsonObject obj = value.toObject();
-        qDebug()<< "name: " << obj["name"];
         QString name = obj["name"].toString();
-        Category category(name);
-        categoryList.append(&category);
+        categoryList->createCategory(name);
     }
-
+    emit finishedLoad();
     reply->deleteLater();
 }

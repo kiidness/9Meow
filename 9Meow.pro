@@ -23,13 +23,14 @@ SOURCES += src/9Meow.cpp \
 DISTFILES += qml/9Meow.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/9Meow.changes.in \
     rpm/9Meow.changes.run.in \
     rpm/9Meow.spec \
     rpm/9Meow.yaml \
     translations/*.ts \
-    9Meow.desktop
+    9Meow.desktop \
+    qml/delegates/DelegateCategory.qml \
+    qml/pages/CategoryPage.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 

@@ -50,7 +50,7 @@ QHash<int, QByteArray> CategoryModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[CategoryName] = "name";
-    roles[Category]     = "file";
+    roles[Category]     = "category";
 
     return roles;
 }

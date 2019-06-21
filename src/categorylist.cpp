@@ -33,7 +33,14 @@ Category *CategoryList::at(int place) const{
     return m_categories.at(place);
 }
 
-
+void CategoryList::clear() {
+    if (this->count() <= 0) {
+        return;
+    }
+    for (int i = 0; i < this->count(); i++) {
+        removeCategory(i);
+    }
+}
 
 void CategoryList::remove(int index){
     emit preRemoveCategory(index);

@@ -13,10 +13,14 @@ class ApiClient: public QObject
 {
     Q_OBJECT
     QNetworkAccessManager networkManager;
+    CategoryList *categoryList;
 
 public:
     ApiClient(QObject *parent = nullptr);
-    CategoryList *getAllCategory();
+    void getAllCategory(CategoryList *categoryList);
+
+signals :
+    void finishedLoad();
 public slots:
     void onResult(QNetworkReply *reply);
 };

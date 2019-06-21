@@ -23,6 +23,7 @@ public:
     void disconnectCateg(int index);
     void createCategory(QString name);
     void removeCategory(int position);
+    void clear();
 
 signals:
     void preAppendCategory();

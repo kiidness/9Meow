@@ -33,13 +33,13 @@ int main(int argc, char *argv[])
 
     // https://doc.qt.io/qt-5/qsortfilterproxymodel.html#details
     // POUR LE TRI ^
-
+    CategoryList categoryList;
     //
     ApiClient apiClient;
-    apiClient.getAllCategory();
+    apiClient.getAllCategory(&categoryList);
     //
 
-    CategoryList categoryList;
+
 
     view->rootContext()->setContextProperty("categoryList", &categoryList);
 
