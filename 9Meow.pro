@@ -18,7 +18,10 @@ SOURCES += src/9Meow.cpp \
     src/category.cpp \
     src/categorylist.cpp \
     src/categorymodel.cpp \
-    src/apiclient.cpp
+    src/apiclient.cpp \
+    src/catimage.cpp \
+    src/catimagelist.cpp \
+    src/catimagemodel.cpp
 
 DISTFILES += qml/9Meow.qml \
     qml/cover/CoverPage.qml \
@@ -48,4 +51,7 @@ HEADERS += \
     src/category.h \
     src/categorylist.h \
     src/categorymodel.h \
-    src/apiclient.h
+    src/apiclient.h \
+    src/catimage.h \
+    src/catimagelist.h \
+    src/catimagemodel.h

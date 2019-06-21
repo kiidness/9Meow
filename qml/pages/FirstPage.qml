@@ -22,14 +22,8 @@ Page {
         header: Column {
             width: parent.width
             PageHeader {
-                        title: qsTr("Nested Page")
+                        title: qsTr("Cats breeds")
                     }
-            Label {
-                text: "test"
-            }
-            Label {
-                text: "aaaaaa"
-            }
         }
         model: CategoryModel { list: categoryList }
 

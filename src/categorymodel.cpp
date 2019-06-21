@@ -58,10 +58,11 @@ QHash<int, QByteArray> CategoryModel::roleNames() const
 void CategoryModel::newElement()
 {
     QString name(tr("Unknown"));
+    QString id(tr("Unknown"));
     QTextStream stream(&name);
     stream << "-" << m_categoryList->count();
 
-    m_categoryList->createCategory(name);
+    m_categoryList->createCategory(name, id);
 }
 
 void CategoryModel::removeRow(int index)

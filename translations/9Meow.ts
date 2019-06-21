@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>CatImageModel</name>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CategoryModel</name>
     <message>
         <source>Unknown</source>
@@ -22,7 +29,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Nested Page</source>
+        <source>Cats breeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

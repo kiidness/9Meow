@@ -1,5 +1,7 @@
 #ifdef QT_QML_DEBUG
 #include <QtQuick>
+
+
 #endif
 
 #include <sailfishapp.h>
@@ -7,8 +9,11 @@
 #include "category.h"
 #include "categorylist.h"
 #include "categorymodel.h"
+#include "catimage.h"
+#include "catimagelist.h"
+#include "catimagemodel.h"
 #include "apiclient.h"
-
+#include <QTextStream>
 int main(int argc, char *argv[])
 {
     // SailfishApp::main() will display "qml/9Meow.qml", if you need more
@@ -31,9 +36,13 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<CategoryList>("CategoryModel", 1, 0, "CategoryList", QStringLiteral("Don't define CategoryList in QML!") );
     qmlRegisterUncreatableType<Category>("CategoryModel", 1, 0, "Category", QStringLiteral("Don't define Category in QML!") );
 
+    qmlRegisterType<CatImageModel>("CatImageModel", 1, 0, "CatImageModel" );
+    qmlRegisterUncreatableType<CatImageList>("CatImageModel", 1, 0, "CatImageList", QStringLiteral("Don't define CatImageList in QML!") );
+    qmlRegisterUncreatableType<CatImage>("CatImageModel", 1, 0, "CatImage", QStringLiteral("Don't define CatImage in QML!") );
     // https://doc.qt.io/qt-5/qsortfilterproxymodel.html#details
     // POUR LE TRI ^
     CategoryList categoryList;
+    CatImageList catImageList;
     //
     ApiClient apiClient;
     apiClient.getAllCategory(&categoryList);
@@ -42,6 +51,8 @@ int main(int argc, char *argv[])
 
 
     view->rootContext()->setContextProperty("categoryList", &categoryList);
+    view->rootContext()->setContextProperty("catImageList", &catImageList);
+    view->rootContext()->setContextProperty("apiClient", &apiClient);
 
     view->setSource(SailfishApp::pathTo("qml/9Meow.qml"));
     view->show();

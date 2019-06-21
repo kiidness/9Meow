@@ -1,6 +1,7 @@
 #include "apiclient.h"
 #include "categorylist.h"
 #include "category.h"
+#include "catimagelist.h"
 
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
@@ -24,8 +25,17 @@ void ApiClient::getAllCategory(CategoryList *list) {
     networkManager.get(request);
 }
 
+void ApiClient::getAllImages(QString categoryName, CatImageList *list)
+{
+    QUrl url("https://api.thecatapi.com/v1/images/search?limit=20&breed_ids="+categoryName);
+    QNetworkRequest request;
+    request.setUrl(url);
+
+    catImageList = list;
+    networkManager.get(request);
+}
+
 void ApiClient::onResult(QNetworkReply* reply){
-    categoryList->clear();
     if(reply->error() != QNetworkReply::NoError)
         return;
     QByteArray result = reply->readAll();
@@ -33,11 +43,32 @@ void ApiClient::onResult(QNetworkReply* reply){
 
     QJsonArray array = jsonResponse.array();
 
-    for(const QJsonValue& value : array) {
-        QJsonObject obj = value.toObject();
-        QString name = obj["name"].toString();
-        categoryList->createCategory(name);
+    auto a = array[0].toObject();
+
+    if(a["url"].toString() != ""){
+        catImageList->clear();
+        for(const QJsonValue& value : array) {
+            QJsonObject obj = value.toObject();
+            QString name = obj["id"].toString();
+            QString url = obj["url"].toString();
+            catImageList->createCatImage(name, url);
+        }
+        emit finishedLoadCatImages();
     }
-    emit finishedLoad();
+    else{
+        categoryList->clear();
+        for(const QJsonValue& value : array) {
+            QJsonObject obj = value.toObject();
+            QString name = obj["name"].toString();
+            QString id = obj["id"].toString();
+            categoryList->createCategory(name, id);
+        }
+        emit finishedLoadCategorys();
+    }
+
+
+
+
+
     reply->deleteLater();
 }

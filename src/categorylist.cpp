@@ -53,9 +53,9 @@ void CategoryList::remove(int index){
     emit postRemoveCategory();
 }
 
-void CategoryList::createCategory(QString name)
+void CategoryList::createCategory(QString name, QString id)
 {
-    append(new Category((name) ));
+    append(new Category(name, id));
 }
 
 void CategoryList::removeCategory(int position)

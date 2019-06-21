@@ -21,7 +21,7 @@ public:
     void connectCateg(int index);
 
     void disconnectCateg(int index);
-    void createCategory(QString name);
+    void createCategory(QString name, QString id);
     void removeCategory(int position);
     void clear();
 
