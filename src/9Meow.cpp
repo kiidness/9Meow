@@ -43,10 +43,11 @@ int main(int argc, char *argv[])
     // POUR LE TRI ^
     CategoryList categoryList;
     CatImageList catImageList;
+    QList<Vote*> votes;
     //
     ApiClient apiClient;
     apiClient.getAllCategory(&categoryList);
-    apiClient.getAllVotes();
+    apiClient.getAllVotes(&votes);
     //
 
 
