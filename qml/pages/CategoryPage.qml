@@ -35,12 +35,36 @@ Page {
                 border.width: 1
                 border.color: "#999"
                 Image {
+                    id: catImage
                     anchors.horizontalCenter: parent.horizontalCenter
                     height: 800
                     source: url
-                    fillMode: Image.PreserveAspectFit
+                    fillMode: Image.PreserveAspectCrop
                 }
+                Grid {
+                    id: row
+                    anchors.top: catImage.bottom
+                    width: parent.width
+                    columns: 3
 
+                    Button {
+                        id: upvoteBtn
+                        text: "▲"
+                        width: parent.width / 4
+                    }
+                    Label {
+                        text: "NB VOTES"
+                        width: parent.width / 2
+                        horizontalAlignment: "AlignHCenter"
+                        verticalAlignment: "AlignVCenter"
+                    }
+                    Button {
+                        id: downvoteBtn
+                        text: "▼"
+                        width: parent.width / 4
+                    }
+
+                }
             }
 
 

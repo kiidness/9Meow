@@ -10,10 +10,7 @@ ListItem {
     }
     menu: ContextMenu {
         MenuItem {
-            text: "Remove from List"
-        }
-        MenuItem {
-            text: "Delete File"
+            text: "Refresh list"
         }
     }
 
