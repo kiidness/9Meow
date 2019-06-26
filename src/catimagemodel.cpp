@@ -52,6 +52,7 @@ QHash<int, QByteArray> CatImageModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[CatImageName] = "name";
     roles[CatImageUrl] = "url";
+    roles[CatImageVote] = "vote";
     roles[CatImage]     = "catImage";
 
     return roles;
@@ -94,6 +95,8 @@ QVariant CatImageModel::data(const QModelIndex &index, int role) const
         return catImage->name();
     case CatImageUrl :
         return catImage->url();
+    case CatImageVote :
+        return catImage->vote();
     case CatImage:
         return QVariant::fromValue(catImage);
     default:
@@ -114,6 +117,9 @@ bool CatImageModel::setData(const QModelIndex &index, const QVariant &value, int
             emit dataChanged(index, index, QVector<int>() << role);
         case CatImageUrl:
             catImage->seturl(value.toString());
+            emit dataChanged(index, index, QVector<int>() << role);
+        case CatImageVote:
+            catImage->setvote(value.toInt());
             emit dataChanged(index, index, QVector<int>() << role);
         default:
             break;

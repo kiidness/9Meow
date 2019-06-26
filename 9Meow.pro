@@ -21,7 +21,8 @@ SOURCES += src/9Meow.cpp \
     src/apiclient.cpp \
     src/catimage.cpp \
     src/catimagelist.cpp \
-    src/catimagemodel.cpp
+    src/catimagemodel.cpp \
+    src/vote.cpp
 
 DISTFILES += qml/9Meow.qml \
     qml/cover/CoverPage.qml \
@@ -54,4 +55,5 @@ HEADERS += \
     src/apiclient.h \
     src/catimage.h \
     src/catimagelist.h \
-    src/catimagemodel.h
+    src/catimagemodel.h \
+    src/vote.h

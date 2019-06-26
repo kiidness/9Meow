@@ -22,6 +22,7 @@ public:
     ApiClient(QObject *parent = nullptr);
     void getAllCategory(CategoryList *categoryList);
     Q_INVOKABLE void getAllImages(QString categoryName, CatImageList *list);
+    Q_INVOKABLE void getAllVotes();
 
 signals :
     void finishedLoadCategorys();

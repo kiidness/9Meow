@@ -26,6 +26,7 @@ public:
     enum {
         CatImageName = Qt::UserRole,
         CatImageUrl,
+        CatImageVote,
         CatImage
     };
 

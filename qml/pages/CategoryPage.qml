@@ -53,7 +53,7 @@ Page {
                         width: parent.width / 4
                     }
                     Label {
-                        text: "NB VOTES"
+                        text: vote
                         width: parent.width / 2
                         horizontalAlignment: "AlignHCenter"
                         verticalAlignment: "AlignVCenter"

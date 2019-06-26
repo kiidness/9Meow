@@ -35,6 +35,15 @@ void ApiClient::getAllImages(QString categoryName, CatImageList *list)
     networkManager.get(request);
 }
 
+void ApiClient::getAllVotes()
+{
+    QUrl url("https://api.thecatapi.com/v1/votes");
+    QNetworkRequest request;
+    request.setRawHeader("x-api-key","f84b184e-f7f8-4b6f-af11-e4569b2c44dbs");
+    request.setUrl(url);
+    networkManager.get(request);
+}
+
 void ApiClient::onResult(QNetworkReply* reply){
     if(reply->error() != QNetworkReply::NoError)
         return;
