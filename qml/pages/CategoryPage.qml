@@ -52,7 +52,7 @@ Page {
                         text: "▲"
                         width: parent.width / 4
                         onClicked: apiClient.postVote(name, 1)
-                        enabled: !vote
+                        enabled: !isvoted
                     }
                     Label {
                         text: vote
@@ -65,7 +65,7 @@ Page {
                         text: "▼"
                         width: parent.width / 4
                         onClicked: apiClient.postVote(name, 0)
-                        enabled: !vote
+                        enabled: !isvoted
                     }
 
                 }

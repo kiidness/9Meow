@@ -152,7 +152,7 @@ void ApiClient::postVote(QString image, int value){
             }else{
                 catImage->setvote(catImage->vote()-1);
             }
-            catImage->setIsvoted(true);
+            catImage->setisvoted(1);
         }
     }
     QJsonObject json;

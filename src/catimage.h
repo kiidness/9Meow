@@ -10,12 +10,12 @@ class CatImage : public QObject
     Q_PROPERTY(QString name READ name WRITE setname NOTIFY nameChanged)
     Q_PROPERTY(QString url READ name WRITE setname NOTIFY nameChanged)
     Q_PROPERTY(int vote READ vote WRITE setvote NOTIFY voteChanged)
-    Q_PROPERTY(int isvoted READ isvoted WRITE setIsvoted NOTIFY isvotedChanged)
+    Q_PROPERTY(int isvoted READ isvoted WRITE setisvoted NOTIFY isvotedChanged)
 
     QString m_name;
     QString m_url;
     int m_vote;
-    int m_isVoted;
+    int m_isvoted;
 
 public:
     explicit CatImage(QString name, QString url, int vote, QObject *parent = nullptr);
@@ -30,14 +30,14 @@ signals:
     void urlChanged(QString url);
     void voteChanged(int vote);
     void catImageChanged();
-    void isvotedChanged();
+    void isvotedChanged(int isvoted);
 
 public slots:
 
     void setname(QString name);
     void seturl(QString url);
     void setvote(int vote);
-    void setIsvoted(int isVoted);
+    void setisvoted(int isVoted);
 };
 
 #endif // CATIMAGE_H
