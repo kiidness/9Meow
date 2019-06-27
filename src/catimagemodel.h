@@ -27,6 +27,7 @@ public:
         CatImageName = Qt::UserRole,
         CatImageUrl,
         CatImageVote,
+        CatImageIsvoted,
         CatImage
     };
 

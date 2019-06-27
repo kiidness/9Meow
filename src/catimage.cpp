@@ -11,11 +11,25 @@ void CatImage::setvote(int vote)
     emit voteChanged(vote);
 }
 
-CatImage::CatImage(QString name, QString url, QObject *parent)
-    : QObject(parent), m_name(name), m_url(url), m_vote(0)
+int CatImage::isvoted() const
 {
+    return m_isVoted;
+}
+
+void CatImage::setIsvoted(int isVoted)
+{
+    m_isVoted = isVoted;
+    emit isvotedChanged();
+}
+
+CatImage::CatImage(QString name, QString url, int vote = 0, QObject *parent)
+    : QObject(parent), m_name(name), m_url(url), m_vote(vote)
+{
+    m_isVoted = 0;
     connect(this, &CatImage::nameChanged, &CatImage::catImageChanged);
     connect(this, &CatImage::urlChanged, &CatImage::catImageChanged);
+    connect(this, &CatImage::voteChanged, &CatImage::catImageChanged);
+    connect(this, &CatImage::isvotedChanged, &CatImage::catImageChanged);
 }
 
 QString CatImage::url() const

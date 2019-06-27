@@ -1,6 +1,11 @@
 #include "catimagelist.h"
 #include "catimage.h"
 
+QList<CatImage *> CatImageList::catImages() const
+{
+    return m_catImages;
+}
+
 CatImageList::CatImageList(QObject *parent) : QObject(parent)
 {
 
@@ -53,9 +58,9 @@ void CatImageList::remove(int index){
     emit postRemoveCatImage();
 }
 
-void CatImageList::createCatImage(QString name, QString url)
+void CatImageList::createCatImage(QString name, QString url, int vote = 0)
 {
-    append(new CatImage(name, url));
+    append(new CatImage(name, url, vote));
 }
 
 void CatImageList::removeCatImage(int position)

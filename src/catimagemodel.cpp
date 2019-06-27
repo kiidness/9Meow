@@ -65,7 +65,7 @@ void CatImageModel::newElement()
     QTextStream stream(&name);
     stream << "-" << m_catImageList->count();
 
-    m_catImageList->createCatImage(name, url);
+    m_catImageList->createCatImage(name, url, 0);
 }
 
 void CatImageModel::removeRow(int index)
@@ -97,6 +97,9 @@ QVariant CatImageModel::data(const QModelIndex &index, int role) const
         return catImage->url();
     case CatImageVote :
         return catImage->vote();
+    case CatImageIsvoted :
+        qDebug() << catImage->isvoted();
+        return catImage->isvoted();
     case CatImage:
         return QVariant::fromValue(catImage);
     default:
@@ -120,6 +123,9 @@ bool CatImageModel::setData(const QModelIndex &index, const QVariant &value, int
             emit dataChanged(index, index, QVector<int>() << role);
         case CatImageVote:
             catImage->setvote(value.toInt());
+            emit dataChanged(index, index, QVector<int>() << role);
+        case CatImageIsvoted:
+            catImage->setIsvoted(value.toBool());
             emit dataChanged(index, index, QVector<int>() << role);
         default:
             break;

@@ -51,6 +51,8 @@ Page {
                         id: upvoteBtn
                         text: "▲"
                         width: parent.width / 4
+                        onClicked: apiClient.postVote(name, 1)
+                        enabled: !vote
                     }
                     Label {
                         text: vote
@@ -62,6 +64,8 @@ Page {
                         id: downvoteBtn
                         text: "▼"
                         width: parent.width / 4
+                        onClicked: apiClient.postVote(name, 0)
+                        enabled: !vote
                     }
 
                 }
@@ -73,7 +77,9 @@ Page {
         VerticalScrollDecorator {}
     }
     Component.onCompleted: {
+        apiClient.updateAllVotes()
         apiClient.getAllImages(category.id,catImageList)
+
     }
 
 }

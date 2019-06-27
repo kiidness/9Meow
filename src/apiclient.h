@@ -26,11 +26,22 @@ public:
     Q_INVOKABLE void getAllImages(QString categoryName, CatImageList *list);
     Q_INVOKABLE void getAllVotes(QList<Vote *> *list);
 
+    QJsonArray replyToJson(QNetworkReply *reply);
+
+    void connectErrorReplySlot(QNetworkReply *reply);
+
+
+    Q_INVOKABLE void postVote(QString image, int value);
+    Q_INVOKABLE void updateAllVotes();
+
 signals :
     void finishedLoadCategorys();
     void finishedLoadCatImages();
 public slots:
-    void onResult(QNetworkReply *reply);
+    void onVoteResult();
+    void slotError(QNetworkReply::NetworkError error);
+    void onCategoryResult();
+    void onCatImageResult();
 };
 
 #endif // APICLIENT_H

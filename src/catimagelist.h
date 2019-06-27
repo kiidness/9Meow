@@ -20,9 +20,11 @@ public:
     void connectCatImage(int index);
 
     void disconnectCatImage(int index);
-    void createCatImage(QString name, QString url);
+    void createCatImage(QString name, QString url, int vote);
     void removeCatImage(int position);
     void clear();
+
+    QList<CatImage *> catImages() const;
 
 signals:
     void preAppendCatImage();

@@ -31,5 +31,9 @@ Page {
 
         VerticalScrollDecorator {}
     }
+    Component.onCompleted: {
+        apiClient.updateAllVotes()
+
+    }
 
 }
