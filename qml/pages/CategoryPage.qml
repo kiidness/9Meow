@@ -12,13 +12,26 @@ Page {
         id: listViewImage
         anchors.fill: parent
 
-        header: Column {
-            width: parent.width
+        PullDownMenu {
+            MenuItem {
+                onClicked: apiClient.getAllImages(category.id,catImageList)
+                text: qsTr("Refresh")
+            }
+        }
+
+        PushUpMenu {
+
+            MenuItem {
+                onClicked: apiClient.getMoreImages(category.id,catImageList)
+                text: qsTr("Load More")
+            }
+        }
+        header:
             PageHeader {
                 title: category.name
                 id: header
-                    }
-        }
+            }
+
         model: CatImageModel { list: catImageList }
 
 
@@ -26,10 +39,9 @@ Page {
 
             id: imageItem
             width: listView.width
-            height : 900
+            height : 950
             Rectangle {
                 id: container
-                anchors.centerIn: parent
                 height: 800
                 width: parent.width
                 border.width: 1

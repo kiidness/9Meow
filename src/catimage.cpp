@@ -23,9 +23,8 @@ void CatImage::setisvoted(int isVoted)
 }
 
 CatImage::CatImage(QString name, QString url, int vote = 0, QObject *parent)
-    : QObject(parent), m_name(name), m_url(url), m_vote(vote)
+    : QObject(parent), m_name(name), m_url(url), m_vote(vote), m_isvoted(0)
 {
-    m_isvoted = 0;
     connect(this, &CatImage::nameChanged, &CatImage::catImageChanged);
     connect(this, &CatImage::urlChanged, &CatImage::catImageChanged);
     connect(this, &CatImage::voteChanged, &CatImage::catImageChanged);

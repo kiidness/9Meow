@@ -16,6 +16,17 @@
     </message>
 </context>
 <context>
+    <name>CategoryPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load More</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>My Cover</source>
@@ -24,10 +35,6 @@
 </context>
 <context>
     <name>FirstPage</name>
-    <message>
-        <source>Show Page 2</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Cats breeds</source>
         <translation type="unfinished"></translation>

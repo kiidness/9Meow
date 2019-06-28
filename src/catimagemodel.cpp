@@ -54,7 +54,7 @@ QHash<int, QByteArray> CatImageModel::roleNames() const
     roles[CatImageUrl] = "url";
     roles[CatImageVote] = "vote";
     roles[CatImageIsvoted] = "isvoted";
-    roles[CatImage]     = "catImage";
+    roles[CatImage] = "catImage";
 
     return roles;
 }

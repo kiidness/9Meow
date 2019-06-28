@@ -43,6 +43,18 @@ void ApiClient::getAllImages(QString categoryName, CatImageList *list)
     connectErrorReplySlot(reply);
 }
 
+void ApiClient::getMoreImages(QString categoryName, CatImageList *list)
+{
+    QUrl url("https://api.thecatapi.com/v1/images/search?limit=20&breed_ids="+categoryName);
+    QNetworkRequest request;
+    request.setUrl(url);
+
+    catImageList = list;
+    QNetworkReply *reply = networkManager.get(request);
+    connect(reply, &QNetworkReply::finished, this, &ApiClient::onCatImageMoreResult);
+    connectErrorReplySlot(reply);
+}
+
 void ApiClient::connectErrorReplySlot(QNetworkReply *reply)
 {
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
@@ -109,11 +121,15 @@ void ApiClient::onCategoryResult(){
 }
 
 void ApiClient::onCatImageResult(){
+    catImageList->clear();
+    onCatImageMoreResult();
+}
+
+void ApiClient::onCatImageMoreResult(){
     QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
     if(reply->error() != QNetworkReply::NoError)
         return;
     QJsonArray array = replyToJson(reply);
-    catImageList->clear();
     for(const QJsonValue& value : array) {
         QJsonObject obj = value.toObject();
         QString name = obj["id"].toString();

@@ -34,6 +34,8 @@ public:
     Q_INVOKABLE void postVote(QString image, int value);
     Q_INVOKABLE void updateAllVotes();
 
+    void onCatImageMoreResult();
+    Q_INVOKABLE void getMoreImages(QString categoryName, CatImageList *list);
 signals :
     void finishedLoadCategorys();
     void finishedLoadCatImages();

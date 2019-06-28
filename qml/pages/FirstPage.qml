@@ -13,11 +13,7 @@ Page {
         id: listView
         anchors.fill: parent
 
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Show Page 2")
-            }
-        }
+
 
         header: Column {
             width: parent.width
